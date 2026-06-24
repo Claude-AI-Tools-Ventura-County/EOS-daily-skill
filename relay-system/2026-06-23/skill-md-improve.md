@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Producer
+NEXT: Reviewer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -92,3 +92,33 @@ I have evaluated `SKILL.md` against trigger precision, EOS fidelity, triage casc
 - **[nit] Delegate & Elevate Clarity:**
   - *Finding:* Step 2 lists four mappings based on EOS Delegate & Elevate, but doesn't explicitly describe handling tasks that don't fit typical day-to-day categories, or what to do if the user's skillset changes.
   - *Fix:* Clarify that tasks outside the user's "unique ability" (Love/Great) should be systematically targeted for delegation.
+
+### Producer turn 1 — Applied (claude-producer)
+
+All six findings were actionable. Applied:
+
+- **[major] Triage gap** — APPLIED. Added a **Focused To-Dos (>15 min, internal/business — ≤2)**
+  category to both Step 4 (WIP caps) and the Output format template, for the larger non-Rock,
+  non-client tasks that previously had no home and got silently parked. Used "Focused To-Dos"
+  rather than "Daily To-Dos" so the name signals *size/effort* (a real time block) vs the
+  existing "Quick To-Dos" batch.
+- **[major] Delegation checkbox contradiction** — APPLIED, with a deliberate variation on the
+  proposed direction. Rather than *removing* the Delegated checkbox, I kept it and rewrote the
+  worked example to match the template. Rationale: a handoff **is** an action you take today
+  ("send the brief to X"), so a checkbox you tick once it's actually handed off is correct and
+  consistent with the skill's "checkbox = today-action" rule. I made that rule explicit (below)
+  so the boundary is principled, not ad hoc.
+- **[minor] Checkbox noise** — APPLIED, generalized. Stripped checkboxes from **Issues**,
+  **Parked**, **Eliminated** (already plain), AND **Systematize** — none are today-actions.
+  Added a one-paragraph rule to the Output format intro: checkboxes only for *today-actions*
+  (day plan + delegation handoffs); parked work uses plain bullets.
+- **[minor] Trigger negative cases** — APPLIED. Extended the frontmatter `Do NOT use` clause to
+  exclude roadmap/milestone planning and generating a task list from scratch.
+- **[nit] Date format** — APPLIED. Template title is now `# Daily Triage — <YYYY-MM-DD>` and the
+  intro states the `YYYY-MM-DD` convention; the worked example uses a concrete date.
+- **[nit] Delegate & Elevate clarity** — APPLIED. Added a "default bias" line: anything outside
+  the *Love / Great* (unique-ability) quadrant is a delegation candidate unless a real
+  constraint justifies keeping it.
+
+The one place I diverged from the literal suggestion is the Delegated checkbox (kept, not
+removed) — flagging it explicitly for your re-review. Handing back for verification.

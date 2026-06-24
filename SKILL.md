@@ -12,7 +12,9 @@ description: >-
   The skill maps every task to one of five EOS fates (Rock, To-Do, Issue,
   Delegate, Eliminate), protects priority time from billable fires, and flags
   recurring work to systematize. Do NOT use it for writing the tasks themselves
-  or for executing them — only for triage and day-planning.
+  or for executing them, for building a project roadmap or scheduling future
+  milestones, or for generating a brand-new task list from scratch — only for
+  triaging an existing dump and planning the day.
 ---
 
 # Traction Triage
@@ -80,6 +82,9 @@ scheduling it). Ask these in sequence and stop at the first that fits.
    - *Like / Good at it* → keep for now, candidate to offload later.
    - *Don't like / Good at it* → **Delegate**.
    - *Don't like / Not good at it* → **Delegate immediately.**
+   Default bias: anything **outside** the *Love / Great* quadrant (the user's
+   unique ability) is a delegation candidate — keep it only when a real
+   constraint (no one else can do it, or it's genuinely faster to keep) applies.
    Route each delegated task to a roster target: **team member**, **AI
    agent/automation**, or **contractor** — pick by strength, and write the
    handoff so it's actionable, not just "someone else."
@@ -113,6 +118,9 @@ the plan is finishable, not aspirational. Default caps (state them, adjust on re
 - **1 protected Rock block** (90 min) — scheduled *first*, before client work,
   or it never happens.
 - **≤3 client commitments** due today / under SLA.
+- **≤2 focused To-Dos** (>15 min, internal/business work that is *not* a Rock and
+  *not* a client commitment) — the larger non-priority tasks that still need a
+  real time block today, so they don't get silently parked.
 - **1 batch of quick To-Dos** (<15 min each), done in a single pass.
 - Everything else is already Eliminated, Delegated, or parked as an Issue.
 
@@ -135,12 +143,16 @@ all." Recurring manual work is a systematizing opportunity, not a daily decision
 
 ## Output format
 
-ALWAYS use this exact structure. Use GitHub-flavored Markdown. Every actionable
-line is a checkbox with a hyphen prefix: `- [ ]` (never bare `[ ]`). Keep it
-linear and scannable — quick wins (kills, handoffs) read first, deep work next.
+ALWAYS use this exact structure. Use GitHub-flavored Markdown. Use a checkbox
+(`- [ ]`, never bare `[ ]`) ONLY for actions taken *today* — the day plan and the
+delegation handoffs you must actually send. Parked work uses plain bullets (`-`):
+**Issues**, **Parked**, **Eliminated**, and **Systematize** are not today-actions,
+so they never fill the checklist with things you decided *not* to do. Date the
+title `YYYY-MM-DD`. Keep it linear and scannable — quick wins read first, deep
+work next.
 
 ```markdown
-# Daily Triage — <date>
+# Daily Triage — <YYYY-MM-DD>
 
 ## Today's plan (capped)
 **Protected Rock block (90 min) — do first**
@@ -148,6 +160,9 @@ linear and scannable — quick wins (kills, handoffs) read first, deep work next
 
 **Client commitments (≤3)**
 - [ ] <task>  ·  <client>  ·  $<band>
+
+**Focused To-Dos (>15 min, internal/business — ≤2)**
+- [ ] <task>  ·  <Hat/P&L>  ·  $<band>
 
 **Quick To-Dos (batch, <15 min each)**
 - [ ] <task>  ·  <Hat/P&L>
@@ -157,16 +172,16 @@ linear and scannable — quick wins (kills, handoffs) read first, deep work next
 - [ ] <task>  →  <team / agent:name / contractor>  ·  <one-line handoff>
 
 ## Issues — park for next L10 (IDS, don't solve now)
-- [ ] <issue, framed as the real problem>
+- <issue, framed as the real problem>
 
 ## Parked — not today (over cap / someday)
-- [ ] <task>  ·  <why parked>
+- <task>  ·  <why parked>
 
 ## Eliminated
 - <task>  —  <why it advances nothing>
 
 ## Systematize (recurring → Core Process)
-- [ ] <recurring task>  →  document as Core Process
+- <recurring task>  →  document as Core Process
 
 ## Balance check
 - <one or two lines: which P&L got protected time, which got none, $10 work still on your plate>
@@ -174,26 +189,52 @@ linear and scannable — quick wins (kills, handoffs) read first, deep work next
 
 ---
 
-## Worked example (abbreviated)
+## Worked example (compact, but faithful to the output format)
 
 **Input dump:**
 "fix Binoid checkout bug; reply to 14 emails; finally write the Hypercart query-guard
-docs (Rock); pick a logo color for the meetup deck; teammate asked about invoicing;
-research new CI tool; same weekly client status report."
+docs (Rock); set up the staging env for the internal dashboard; pick a logo color for
+the meetup deck; teammate asked about invoicing; research a new CI tool; same weekly
+client status report."
 
-**Output (excerpt):**
+**Output:**
 
-- Protected Rock block: write Hypercart query-guard docs · Rock: ship Query Guard ·
-  Product:Hypercart · $1,000
-- Client commitments: fix Binoid checkout bug · Binoid · $1,000
-- Quick To-Dos: triage 14 emails (batch, 15 min)
-- Delegated: pick logo color → agent:design-mock or teammate · "3 options, on-brand palette"
-- Delegated: invoicing question → team:ops · "answer + link the SOP"
-- Issues (park for L10): "which CI tool" — needs a decision, not a today-task
-- Eliminated: none today
-- Systematize: weekly client status report → Core Process (template + agent draft)
-- Balance check: Product (Hypercart Rock) protected ✔; Client covered ✔; logo + research
-  were $10–$100 work correctly off your plate.
+```markdown
+# Daily Triage — 2026-06-23
+
+## Today's plan (capped)
+**Protected Rock block (90 min) — do first**
+- [ ] Write Hypercart query-guard docs  ·  Rock: ship Query Guard  ·  Product:Hypercart  ·  $1,000
+
+**Client commitments (≤3)**
+- [ ] Fix Binoid checkout bug  ·  Binoid  ·  $1,000
+
+**Focused To-Dos (>15 min, internal/business — ≤2)**
+- [ ] Set up staging env for the internal dashboard  ·  Product:Dashboard  ·  $100
+
+**Quick To-Dos (batch, <15 min each)**
+- [ ] Triage 14 emails (single pass)  ·  Business
+
+## Delegated (handed off, not yours today)
+- [ ] Pick logo color  →  agent:design-mock  ·  "3 on-brand options for the meetup deck"
+- [ ] Answer invoicing question  →  team:ops  ·  "reply + link the SOP"
+
+## Issues — park for next L10 (IDS, don't solve now)
+- Which CI tool to adopt — needs a decision, not a today-task
+
+## Parked — not today (over cap / someday)
+- (nothing over cap today)
+
+## Eliminated
+- (none today)
+
+## Systematize (recurring → Core Process)
+- Weekly client status report  →  document as Core Process (template + agent draft)
+
+## Balance check
+- Product protected ✔ (Hypercart Rock + dashboard To-Do); Client covered ✔; logo + invoicing
+  ($10–$100 work) correctly off your plate.
+```
 
 ---
 
