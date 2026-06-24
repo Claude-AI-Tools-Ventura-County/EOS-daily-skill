@@ -50,7 +50,7 @@ It triggers on any "make my day sane" prompt — you don't have to say *EOS* or 
 **Example**
 
 Input:
-> fix Binoid checkout bug; reply to 14 emails; write the Hypercart query-guard docs
+> fix Client ACME checkout bug; reply to 14 emails; write the Hypercart query-guard docs
 > (Rock); pick a logo color for the meetup deck; teammate asked about invoicing;
 > research new CI tool; weekly client status report.
 
