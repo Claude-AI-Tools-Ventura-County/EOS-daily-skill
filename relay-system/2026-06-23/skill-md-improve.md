@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Reviewer
+NEXT: Producer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -158,5 +158,38 @@ All three round-2 findings applied:
   three" case explicitly: **Eliminate** (zero future value) vs **Park** under *Parked* (potential
   value, no current alignment/capacity).
 
-No divergences this round. Handing back for final verification.
+No divergences this round. Handing back for verification.
 
+### Reviewer turn 3 — Critique (agy)
+
+I have evaluated the updated `SKILL.md` against trigger precision, EOS fidelity, triage cascade, usability, and concision. While the round-2 fixes are correctly implemented, I have identified a few remaining logical and execution gaps for final resolution:
+
+- **[major] Capacity / SLA Conflict on Client Commitments:**
+  - *Finding:* Step 4 enforces a hard daily WIP cap of `≤3` on client commitments due today / under SLA. If a user has 5 client commitments due today that cannot be delegated, the overflow rule dictates listing them under `## Parked — not today`. In a boutique agency, parking SLA-bound commitments means breaching SLAs or missing critical deadlines.
+  - *Fix:* Clarify in Step 4 that client commitments due today that exceed the cap must either be delegated, rescheduled/renegotiated with the client (and then parked), or, if they must be executed by the user today, they must be included in the active plan and flagged in the Balance Check as a capacity overload (with a recommendation to add "Capacity constraint / hiring need" to the L10 Issues list).
+
+- **[minor] Handling Empty Rock Block:**
+  - *Finding:* If a user's daily dump contains zero tasks related to their Rocks, the model cannot invent tasks (per Step 1) but the output template has a mandatory `Protected Rock block` section. It is not explicitly stated how the model should format this section when empty.
+  - *Fix:* Clarify in Step 4 and the Output format that if no Rock work is present in the task dump, the Protected Rock block should be listed as `- (None - no Rock tasks identified in today's dump)` and the Balance Check must flag this as a critical warning (e.g., "WARNING: Product P&L / Rocks got zero time today. Your strategic growth is stalled.").
+
+- **[minor] Structured Balance Check Output:**
+  - *Finding:* The `## Balance check` section in the template is currently free-form (`- <one or two lines: ...>`), which may lead to vague or inconsistent summaries. Since its primary purpose is to catch two critical failure modes (starved P&Ls / Rocks, and undelegated $10 work), a structured format would guarantee these checks are always performed and are immediately scannable.
+  - *Fix:* Specify a structured template for the balance check in the Output format, such as:
+    ```markdown
+    ## Balance check
+    - **P&L Status:** <e.g., Product: Protected (90m) · Client: Covered · Business: Starved (0m)>
+    - **Delegation Misses:** <e.g., None · OR Warning: 1 kept $10 task (<task>)>
+    ```
+    Update the worked example to match this structured format.
+
+- **[minor] Missing Cap / Limits on Quick To-Dos:**
+  - *Finding:* Step 4 specifies a cap of "1 batch of quick To-Dos (<15 min each)", but does not limit the number of items allowed in this batch. If a dump has 10 "quick" tasks, placing them all in the batch would take up to 150 minutes, defeating the purpose of a quick pass and overloading the day.
+  - *Fix:* Define a clear cap on the number of items or total duration for the quick To-Dos batch (e.g., `≤4 items` or `≤30 minutes total time`).
+
+- **[minor] Inconsistent $/hour Banding in Worked Example:**
+  - *Finding:* In the worked example, the task `"Fix Binoid checkout bug"` (coding/debugging client delivery) is tagged `$1,000`. However, Step 3 defines `$100` as "specialized execution: client delivery or skilled technical work (design, code, writing)" and `$1,000` as "high-leverage: strategy, business-building, or high-risk calls". General debugging falls under specialized execution ($100), not high-leverage strategy ($1,000), making the worked example contradict the definitions in Step 3.
+  - *Fix:* Change the tag of the Binoid checkout bug task in the worked example to `$100` to align with the definitions, or clarify in Step 3 that client fires/blockers that directly halt client revenue can be elevated to `$1,000` due to their high-risk/high-impact nature.
+
+- **[minor] Tagging Inconsistency for Client Commitments:**
+  - *Finding:* Step 3 defines the Hat / P&L tag for client work as `Client`. However, the Output format template uses `<client>` (line 174) and the worked example uses `Binoid` (line 222) in place of the `<Hat/P&L>` tag.
+  - *Fix:* Align the naming convention. Specify in Step 3 and the template that the client tag should be formatted as `Client:<Client Name>` (e.g., `Client:Binoid`), mirroring the `Product:<name>` style. This makes the P&L tags consistent across all sections.
