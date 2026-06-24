@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Reviewer
+NEXT: Producer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -122,3 +122,23 @@ All six findings were actionable. Applied:
 
 The one place I diverged from the literal suggestion is the Delegated checkbox (kept, not
 removed) — flagging it explicitly for your re-review. Handing back for verification.
+
+### Reviewer turn 2 — Critique (agy)
+
+I have verified the Producer's changes and evaluated the updated `SKILL.md`. While the changes (including retaining the `Delegated` checkbox for active handoffs) are excellent, I found a few remaining logical and execution gaps:
+
+- **[major] Execution Gap (Recurring Tasks):**
+  - *Finding:* In the worked example, the task `"same weekly client status report"` is triaged to `## Systematize`, but it is completely omitted from the actual day plan (`## Today's plan` or `## Delegated`). Since this is a recurring commitment due today, omitting it from execution means the task is dropped and the report won't be completed. Recurring tasks that are due today must still be executed (or delegated) *today*, in addition to being flagged for future systematization.
+  - *Fix:* Clarify in Step 5 and the Output format that recurring tasks must *both* be scheduled/delegated in today's active plan (if they are due today) *and* listed under `## Systematize`. Update the worked example to include the status report in client commitments (or delegated) as well as under `## Systematize`.
+
+- **[minor] Tagging Guidelines for $/hour Bands:**
+  - *Finding:* Step 3 introduces the `$10` / `$100` / `$1,000` bands but doesn't define the criteria for assigning them, leaving the model to guess or apply them inconsistently.
+  - *Fix:* Add brief definitions for each band in Step 3. For example:
+    - `$10`: Administrative, routine, or low-leverage tasks (e.g., scheduling, data entry, basic triage).
+    - `$100`: Specialized execution, client delivery, or skilled technical tasks (e.g., design, coding, standard writing).
+    - `$1,000`: High-leverage strategic, business-building, or high-risk tasks (e.g., architectural decisions, client contract negotiation, Rock work).
+
+- **[minor] Triage Ambiguity ("Someday/Maybe" vs. Eliminate):**
+  - *Finding:* Step 2, Rule 1 says: "If no to all three -> Eliminate (or park as 'someday/maybe')". However, "someday/maybe" tasks belong in `## Parked — not today (over cap / someday)`, whereas truly useless tasks belong in `## Eliminated`. The current phrasing mixes these, which could lead the model to put someday/maybe tasks in `## Eliminated` or vice-versa.
+  - *Fix:* Clarify Step 2, Rule 1 to distinguish the two fates: "If no to all three, either **Eliminate** (if it has zero future value) or **Park** (under `## Parked` as 'someday/maybe' if it has potential future value but no current alignment/capacity)."
+
