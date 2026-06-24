@@ -74,8 +74,10 @@ Order matters: the cheapest wins come first (killing and offloading work before
 scheduling it). Ask these in sequence and stop at the first that fits.
 
 1. **Eliminate?** Does it advance a Rock, honor a client commitment, or keep the
-   business running? If **no to all three** → **Eliminate** (or park as
-   "someday/maybe"). Most dumps hide 10–20% pure noise here.
+   business running? If **no to all three**, split by future value: **Eliminate**
+   if it has none (kill it), or **Park** as "someday/maybe" (under *Parked — not
+   today*) if it has potential value but no current alignment or capacity. Most
+   dumps hide 10–20% pure noise here.
 2. **Delegate?** Run **Delegate & Elevate** — which quadrant is this task in for
    the user?
    - *Love / Great at it* → keep (this is unique-genius work).
@@ -104,9 +106,13 @@ These two tags are what make agency triage work where vanilla EOS fails.
   company with one set of Rocks; the user runs several. Without this axis,
   billable fires silently starve the internal-product work where the Rocks
   actually live.
-- **$/hour band:** rough `$10` · `$100` · `$1,000`. Reinforces Delegate &
-  Elevate — anything tagged `$10` that's still assigned to the user is a
-  delegation miss; flag it.
+- **$/hour band:** rough `$10` · `$100` · `$1,000`:
+  - `$10` — administrative / routine / low-leverage (scheduling, data entry, basic triage).
+  - `$100` — specialized execution: client delivery or skilled technical work (design, code, writing).
+  - `$1,000` — high-leverage: strategy, business-building, or high-risk calls (architecture, contracts, Rock work).
+
+  Reinforces Delegate & Elevate — anything tagged `$10` that's still assigned to
+  the user is a delegation miss; flag it.
 
 ---
 
@@ -138,6 +144,12 @@ whole skill exists to catch.
 If a task looks like one triaged before (same shape, repeats weekly), don't
 re-decide it daily. Flag it for a **Core Process**: "document once, follow by
 all." Recurring manual work is a systematizing opportunity, not a daily decision.
+
+**But don't drop today's instance.** A recurring task that is *due today* still
+needs a fate in the active plan — schedule, batch, or delegate it now — *in
+addition to* the **Systematize** flag. Systematize is about the future process;
+it does not complete today's instance. (So a due-today recurring task appears in
+both places: once as a today-action, once under Systematize.)
 
 ---
 
@@ -218,6 +230,7 @@ client status report."
 ## Delegated (handed off, not yours today)
 - [ ] Pick logo color  →  agent:design-mock  ·  "3 on-brand options for the meetup deck"
 - [ ] Answer invoicing question  →  team:ops  ·  "reply + link the SOP"
+- [ ] Draft weekly client status report (due today)  →  agent:status-draft  ·  "pull metrics + draft; I review & send"
 
 ## Issues — park for next L10 (IDS, don't solve now)
 - Which CI tool to adopt — needs a decision, not a today-task
@@ -230,10 +243,12 @@ client status report."
 
 ## Systematize (recurring → Core Process)
 - Weekly client status report  →  document as Core Process (template + agent draft)
+  *(also delegated above so today's report still ships)*
 
 ## Balance check
 - Product protected ✔ (Hypercart Rock + dashboard To-Do); Client covered ✔; logo + invoicing
-  ($10–$100 work) correctly off your plate.
+  ($10–$100 work) correctly off your plate. Weekly status report is delegated for *today* **and**
+  flagged to systematize — done now, automated next time.
 ```
 
 ---

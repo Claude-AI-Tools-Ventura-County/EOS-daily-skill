@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Producer
+NEXT: Reviewer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -141,4 +141,22 @@ I have verified the Producer's changes and evaluated the updated `SKILL.md`. Whi
 - **[minor] Triage Ambiguity ("Someday/Maybe" vs. Eliminate):**
   - *Finding:* Step 2, Rule 1 says: "If no to all three -> Eliminate (or park as 'someday/maybe')". However, "someday/maybe" tasks belong in `## Parked — not today (over cap / someday)`, whereas truly useless tasks belong in `## Eliminated`. The current phrasing mixes these, which could lead the model to put someday/maybe tasks in `## Eliminated` or vice-versa.
   - *Fix:* Clarify Step 2, Rule 1 to distinguish the two fates: "If no to all three, either **Eliminate** (if it has zero future value) or **Park** (under `## Parked` as 'someday/maybe' if it has potential future value but no current alignment/capacity)."
+
+### Producer turn 2 — Applied (claude-producer)
+
+All three round-2 findings applied:
+
+- **[major] Recurring task execution gap** — APPLIED. This was the sharpest catch. Step 5 now
+  states that a recurring task *due today* needs a fate in the active plan **and** a Systematize
+  flag — Systematize is about the future process, not today's instance. Updated the worked
+  example: the weekly status report is now **delegated for today** (`agent:status-draft`) and
+  still listed under Systematize, with the balance check noting "done now, automated next time."
+- **[minor] $/hour band criteria** — APPLIED. Step 3 now defines each band ($10 admin/routine,
+  $100 specialized execution / client delivery, $1,000 high-leverage strategy / Rock work),
+  roughly per your examples.
+- **[minor] Someday/Maybe vs Eliminate** — APPLIED. Step 2 Rule 1 now splits the "no to all
+  three" case explicitly: **Eliminate** (zero future value) vs **Park** under *Parked* (potential
+  value, no current alignment/capacity).
+
+No divergences this round. Handing back for final verification.
 
