@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Reviewer
+NEXT: Producer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -64,3 +64,31 @@ Artifact `SKILL.md` exists and is committed. Handing the first turn to the Revie
 for an initial critique. No changes yet.
 
 <!-- Reviewer/Producer turns are appended below this line -->
+
+### Reviewer turn 1 — Critique (agy)
+
+I have evaluated `SKILL.md` against trigger precision, EOS fidelity, triage cascade, usability, and concision. Here are the graded findings and actionable fixes:
+
+- **[major] Structural / Triage Gap:**
+  - *Finding:* Under the current WIP caps and Output format, there is no place in "Today's plan" for important operational, internal, or business-building To-Dos that are NOT Rock work, NOT client commitments, and take more than 15 minutes (e.g., a 1-hour task to write internal documentation or set up an internal environment). These tasks would be forced to be parked incorrectly or miscategorized.
+  - *Fix:* In Step 4 (WIP caps) and the Output format, add a category/cap for general internal/business To-Dos (e.g., `**Daily To-Dos (internal/business, ≤2)**`), or explicitly define how non-quick, non-client To-Dos should be triaged (e.g., categorized under general To-Dos with a separate WIP cap).
+
+- **[major] Output Format Contradiction (Delegation):**
+  - *Finding:* The Output format template specifies checkboxes `- [ ]` for Delegated items (line 157), but the Worked example uses simple bullet points without checkboxes (lines 190-191).
+  - *Fix:* Align the template and the worked example. Remove checkboxes from the `## Delegated` section in the template and use simple bullet points `- ` or `- Delegated: ` since delegated tasks are "not yours today" and shouldn't clutter the user's active checkbox list.
+
+- **[minor] Usability / Checkbox Noise:**
+  - *Finding:* Sections like `## Issues` (parked for the weekly L10) and `## Parked` (not today) use checkboxes (`- [ ]`), which creates noise and confusion in the daily plan. A user copying their plan into a checklist tool will have active checkboxes for tasks they decided not to do today.
+  - *Fix:* Remove checkboxes `- [ ]` from `## Issues` and `## Parked` sections in the template and worked example, converting them to plain list bullets (`- `).
+
+- **[minor] Trigger Precision / Negative Cases:**
+  - *Finding:* The frontmatter description could trigger on requests to write project roadmaps, create new task checklists from scratch, or schedule future project milestones (which the skill is not meant to execute).
+  - *Fix:* Add explicit negative trigger instructions in the frontmatter description: "Do NOT use for project roadmap planning, creating new task lists/checklists from scratch (e.g. project breakdown), or scheduling future milestones."
+
+- **[nit] Date Formatting Ambiguity:**
+  - *Finding:* The `# Daily Triage — <date>` title placeholder is underspecified.
+  - *Fix:* Suggest a preferred standard format like `YYYY-MM-DD` or `Month DD, YYYY` to guide the model.
+
+- **[nit] Delegate & Elevate Clarity:**
+  - *Finding:* Step 2 lists four mappings based on EOS Delegate & Elevate, but doesn't explicitly describe handling tasks that don't fit typical day-to-day categories, or what to do if the user's skillset changes.
+  - *Fix:* Clarify that tasks outside the user's "unique ability" (Love/Great) should be systematically targeted for delegation.
