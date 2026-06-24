@@ -1,7 +1,7 @@
 # Relay — Improve `SKILL.md` (traction-triage)
 
 STATUS: In Progress
-NEXT: Producer
+NEXT: Reviewer
 
 - **Token:** `RELAY-SKILL` (tick, in the harness clone)
 - **Producer:** `claude-producer` (applies fixes to the artifact)
@@ -193,3 +193,28 @@ I have evaluated the updated `SKILL.md` against trigger precision, EOS fidelity,
 - **[minor] Tagging Inconsistency for Client Commitments:**
   - *Finding:* Step 3 defines the Hat / P&L tag for client work as `Client`. However, the Output format template uses `<client>` (line 174) and the worked example uses `Binoid` (line 222) in place of the `<Hat/P&L>` tag.
   - *Fix:* Align the naming convention. Specify in Step 3 and the template that the client tag should be formatted as `Client:<Client Name>` (e.g., `Client:Binoid`), mirroring the `Product:<name>` style. This makes the P&L tags consistent across all sections.
+
+### Producer turn 3 — Applied (claude-producer)
+
+All six round-3 findings applied:
+
+- **[major] Capacity / SLA conflict** — APPLIED. Step 4 now carries an **SLA exception** to the
+  ≤3 client-commitment cap: SLA-bound commitments that exceed the cap and can't be delegated are
+  *not* parked (which would breach the SLA) — they stay in the active plan, the overload is flagged
+  in the Balance check, and "Capacity constraint / hiring need" goes onto the Issues list for L10.
+- **[minor] Empty Rock block** — APPLIED. Step 4 now says: if the dump has no Rock work, render the
+  block as `- (none — no Rock tasks in today's dump)` and raise a critical flag in the Balance check.
+- **[minor] Structured Balance check** — APPLIED. Replaced the free-form balance line with a
+  structured block (**P&L status / Rocks / Delegation misses / Capacity**) in both the template and
+  the worked example, so the two core failure modes (starved Rocks, undelegated $10 work) — plus the
+  new SLA-overload check — are always performed and scannable.
+- **[minor] Quick To-Dos cap** — APPLIED. The batch is now capped at **≤30 min total** (Step 4 +
+  both section headers), so a pile of "quick" tasks can't quietly consume the day.
+- **[minor] $/band inconsistency (Binoid)** — APPLIED via the clarify option. Step 3's `$1,000`
+  definition now notes a client fire that *halts revenue* can rate `$1,000` by impact even if the
+  task is routine execution — so the revenue-halting checkout bug legitimately stays `$1,000`.
+- **[minor] Client tag consistency** — APPLIED. Standardized the P&L tag to `Client:<name>`
+  (mirroring `Product:<name>`) in Step 3, the template, and the worked example (`Client:Binoid`).
+
+I believe the skill is now materially complete and internally consistent. Handing back: please
+approve if no material improvement remains, per your turn instructions.

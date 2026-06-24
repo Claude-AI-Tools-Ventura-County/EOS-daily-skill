@@ -102,14 +102,14 @@ scheduling it). Ask these in sequence and stop at the first that fits.
 
 These two tags are what make agency triage work where vanilla EOS fails.
 
-- **Hat / P&L:** `Client` · `Product:<name>` · `Business`. EOS assumes one
+- **Hat / P&L:** `Client:<name>` · `Product:<name>` · `Business`. EOS assumes one
   company with one set of Rocks; the user runs several. Without this axis,
   billable fires silently starve the internal-product work where the Rocks
   actually live.
 - **$/hour band:** rough `$10` · `$100` · `$1,000`:
   - `$10` — administrative / routine / low-leverage (scheduling, data entry, basic triage).
   - `$100` — specialized execution: client delivery or skilled technical work (design, code, writing).
-  - `$1,000` — high-leverage: strategy, business-building, or high-risk calls (architecture, contracts, Rock work).
+  - `$1,000` — high-leverage: strategy, business-building, or high-risk calls (architecture, contracts, Rock work). A client fire that directly halts revenue can also rate `$1,000` by *impact*, even when the task itself is routine execution.
 
   Reinforces Delegate & Elevate — anything tagged `$10` that's still assigned to
   the user is a delegation miss; flag it.
@@ -122,12 +122,19 @@ EOS keeps Rocks to 3–7 and To-Do lists short on purpose. Enforce a daily cap s
 the plan is finishable, not aspirational. Default caps (state them, adjust on request):
 
 - **1 protected Rock block** (90 min) — scheduled *first*, before client work,
-  or it never happens.
-- **≤3 client commitments** due today / under SLA.
+  or it never happens. If the dump has **no** Rock work, don't invent it: render
+  the block as `- (none — no Rock tasks in today's dump)` and raise a critical
+  flag in the Balance check — strategic work is stalled.
+- **≤3 client commitments** due today / under SLA. **SLA exception:** if more than
+  3 are genuinely due today and can't be delegated, do *not* silently park them
+  (that breaches the SLA) — keep them in the active plan, flag the overload in the
+  Balance check, and add "Capacity constraint / hiring need" to the Issues list
+  for the next L10. Renegotiate or reschedule with the client where you can.
 - **≤2 focused To-Dos** (>15 min, internal/business work that is *not* a Rock and
   *not* a client commitment) — the larger non-priority tasks that still need a
   real time block today, so they don't get silently parked.
-- **1 batch of quick To-Dos** (<15 min each), done in a single pass.
+- **1 batch of quick To-Dos** (<15 min each, **≤30 min total** for the batch),
+  done in a single pass.
 - Everything else is already Eliminated, Delegated, or parked as an Issue.
 
 **Overflow rule:** anything past the caps is explicitly listed under
@@ -171,12 +178,12 @@ work next.
 - [ ] <task>  ·  Rock: <rock>  ·  <Hat/P&L>  ·  $<band>
 
 **Client commitments (≤3)**
-- [ ] <task>  ·  <client>  ·  $<band>
+- [ ] <task>  ·  Client:<name>  ·  $<band>
 
 **Focused To-Dos (>15 min, internal/business — ≤2)**
 - [ ] <task>  ·  <Hat/P&L>  ·  $<band>
 
-**Quick To-Dos (batch, <15 min each)**
+**Quick To-Dos (batch, <15 min each, ≤30 min total)**
 - [ ] <task>  ·  <Hat/P&L>
 - [ ] <task>  ·  <Hat/P&L>
 
@@ -196,7 +203,10 @@ work next.
 - <recurring task>  →  document as Core Process
 
 ## Balance check
-- <one or two lines: which P&L got protected time, which got none, $10 work still on your plate>
+- **P&L status:** <e.g., Product: protected (90m) · Client: covered · Business: starved (0m)>
+- **Rocks:** <e.g., 1 Rock block protected · OR ⚠ no Rock time today — strategic work stalled>
+- **Delegation misses:** <e.g., none · OR ⚠ 1 kept $10 task: <task>>
+- **Capacity:** <e.g., within caps · OR ⚠ SLA overload: N client commitments over the cap>
 ```
 
 ---
@@ -219,12 +229,12 @@ client status report."
 - [ ] Write Hypercart query-guard docs  ·  Rock: ship Query Guard  ·  Product:Hypercart  ·  $1,000
 
 **Client commitments (≤3)**
-- [ ] Fix Binoid checkout bug  ·  Binoid  ·  $1,000
+- [ ] Fix Binoid checkout bug  ·  Client:Binoid  ·  $1,000
 
 **Focused To-Dos (>15 min, internal/business — ≤2)**
 - [ ] Set up staging env for the internal dashboard  ·  Product:Dashboard  ·  $100
 
-**Quick To-Dos (batch, <15 min each)**
+**Quick To-Dos (batch, <15 min each, ≤30 min total)**
 - [ ] Triage 14 emails (single pass)  ·  Business
 
 ## Delegated (handed off, not yours today)
@@ -246,9 +256,10 @@ client status report."
   *(also delegated above so today's report still ships)*
 
 ## Balance check
-- Product protected ✔ (Hypercart Rock + dashboard To-Do); Client covered ✔; logo + invoicing
-  ($10–$100 work) correctly off your plate. Weekly status report is delegated for *today* **and**
-  flagged to systematize — done now, automated next time.
+- **P&L status:** Product: protected (Hypercart Rock + dashboard To-Do) · Client: covered · Business: light
+- **Rocks:** 1 Rock block protected ✔
+- **Delegation misses:** none — logo, invoicing, and the status-report draft ($10–$100 work) are all off your plate
+- **Capacity:** within caps ✔ — status report delegated for *today* **and** flagged to systematize (done now, automated next time)
 ```
 
 ---
