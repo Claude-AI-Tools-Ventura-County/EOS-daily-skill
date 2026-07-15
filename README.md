@@ -33,8 +33,8 @@ still on your plate gets flagged as a delegation miss).
 
 ## Install
 
-- [ ] Copy the `traction-triage/` folder into your skills directory (e.g. your Giant Brains repo).
-- [ ] Confirm `SKILL.md` sits at `traction-triage/SKILL.md`.
+- [ ] Copy this repo into your skills directory as a `traction-triage/` folder (e.g. your Giant Brains repo).
+- [ ] Confirm `SKILL.md` sits at the top of that folder.
 - [ ] No dependencies, scripts, or config files — it's a single-file skill.
 
 ---
